@@ -27,15 +27,16 @@ export default defineComponent({
 @import "@/assets/css/global.scss";
 
 .login-logo {
-  background-color: $color-blue-light;
+  // background-color: $color-blue-light;
+  background-image: url(background-img.png);
   height: 100vh;
-  width: 50vw;
-  min-width: 50vw;
+  width: 100vw;
+  min-width: 100vw;
   overflow: hidden;
   @include layout(center, center);
-  .icon {
-    @include icon(40rem, $color-blue-dark);
-    transform: rotate(-30deg);
-  }
+  // .icon {
+  //   @include icon(40rem, $color-blue-dark);
+  //   transform: rotate(-30deg);
+  // }
 }
 </style>

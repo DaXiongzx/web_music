@@ -1,5 +1,5 @@
 <template>
-  <!-- <YinLoginLogo></YinLoginLogo> -->
+  <YinLoginLogo></YinLoginLogo>
   <div class="sign-in">
     <div class="sign-in-head">
       <span>帐号登录</span>
@@ -50,9 +50,9 @@ interface resSignIn {
 }
 
 export default defineComponent({
-  // components: {
-  //   YinLoginLogo,
-  // },
+  components: {
+    YinLoginLogo,
+  },
   setup() {
     const { proxy } = getCurrentInstance();
     const { routerManager, changeIndex } = mixin();
@@ -108,9 +108,9 @@ export default defineComponent({
           });
           setUserInfo(result.userMsg[0]);
           setTimeout(() => {
-            if (result.success) {
+            // if (result.success) {
               routerManager(HOME, { path: HOME });
-            }
+            // }
           }, 2000);
         } else {
           (proxy as any).$notify({

@@ -1,5 +1,5 @@
 <template>
-  <!-- <yin-login-logo></yin-login-logo> -->
+  <yin-login-logo></yin-login-logo>
   <div class='sign-up'>
     <div class='sign-up-head'>
       <span>用户注册</span>
@@ -45,7 +45,7 @@
 <script lang="ts">
 import { defineComponent, ref, reactive, getCurrentInstance } from "vue";
 import mixin from '@/mixins/mixin'
-// import YinLoginLogo from '@/components/layouts/YinLoginLogo.vue'
+import YinLoginLogo from '@/components/layouts/YinLoginLogo.vue'
 import { HttpManager } from '@/api'
 import { getDateTime } from '@/utils'
 import { RULES, AREA, SIGN_IN, NAV_NAME } from '@/enums'
@@ -59,7 +59,9 @@ interface resSignUp {
 }
 
 export default defineComponent({
-
+  components: {
+    YinLoginLogo,
+  },
   setup() {
     const { proxy } = getCurrentInstance();
     const { routerManager, changeIndex } = mixin()
@@ -90,6 +92,7 @@ export default defineComponent({
       params.append('introduction', registerForm.introduction)
       params.append('location', registerForm.location)
       try {
+		console.log(registerForm.birth)
         const result = await HttpManager.SignUp(params) as resSignUp;
         if (result.code != null) {
           (proxy as any).$notify({
@@ -97,10 +100,10 @@ export default defineComponent({
             type: result.type
           })
           setTimeout(() => {
-            if (result.success) {
+            //if (result.success) {
               routerManager(SIGN_IN, { path: SIGN_IN })
               changeIndex(NAV_NAME.SIGN_IN)
-            }
+            //}
           }, 2000)
         } else {
           (proxy as any).$notify({
